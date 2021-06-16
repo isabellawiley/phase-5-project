@@ -3,18 +3,29 @@ class Garment < ApplicationRecord
 
     has_one_attached :main_image
     
-    belongs_to :user
     belongs_to :closet
     has_many :temperature_ranges
     has_many :temperatures, through: :temperature_ranges
     
-    validates :name, :garment_style, :garment_type, presence: true
+    validates :name, presence: true
+
+    def user
+        self.closet.user
+    end
 
     def lowest_temp
-        (self.temperatures.min {|temp| temp.low_temperature}).low_temperature
+        if self.temperatures.length > 0
+            return (self.temperatures.min {|temp| temp.low_temperature}).low_temperature
+        else
+            return nil
+        end
     end
     
     def highest_temp
-        (self.temperatures.max {|temp| temp.high_temperature}).high_temperature
+        if self.temperatures.length > 0
+            return (self.temperatures.max {|temp| temp.high_temperature}).high_temperature
+        else
+            return nil
+        end
     end
 end

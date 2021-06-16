@@ -45,9 +45,11 @@ ActiveRecord::Schema.define(version: 2021_06_09_154207) do
 
   create_table "closets", force: :cascade do |t|
     t.string "title"
-    t.boolean "is_default"
+    t.boolean "is_default", default: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_closets_on_user_id"
   end
 
   create_table "garments", force: :cascade do |t|
@@ -56,10 +58,10 @@ ActiveRecord::Schema.define(version: 2021_06_09_154207) do
     t.string "garment_type"
     t.boolean "is_favorite", default: false
     t.boolean "is_clean", default: true
-    t.integer "user_id"
-    t.integer "closet_id"
+    t.bigint "closet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["closet_id"], name: "index_garments_on_closet_id"
   end
 
   create_table "temperature_ranges", force: :cascade do |t|

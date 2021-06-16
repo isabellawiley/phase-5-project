@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Login(){
     const history = useHistory();
     const dispatch = useDispatch();
-    const errorMessage = useSelector((state) => state.errorMessage)
+    const errorMessage = useSelector((state) => state.userReducer.errorMessage)
 
     function handleLogin(e){
         e.preventDefault();
@@ -22,22 +22,20 @@ function Login(){
         })
         .then(res => res.json())
         .then((data) => {
-            console.log(data)
             if(data.message){
                 dispatch({type: "setErrorMessage", payload: data.message})
             }
             else{
                 dispatch({type: "setCurrentUser", payload: data});
+                dispatch({type: "setUserGarments", payload: data.garments});
+                dispatch({type: "setUserClosets", payload: data.closets});
                 localStorage.setItem("loggedUser", JSON.stringify(data))
-                console.log(localStorage.getItem("loggedUser"))
-                console.log(JSON.parse(localStorage.getItem("loggedUser")))
                 history.push("/")
             }
             
         })
     }
 
-    console.log(errorMessage)
     return(
         <div>
             <h1>Login</h1>

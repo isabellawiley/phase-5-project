@@ -7,14 +7,14 @@ class ClosetsController < ApplicationController
     end
 
     def create
-        closet = Closet.new(params.permit(:title, :remove_main_image, :main_image))
+        closet = Closet.create(params.permit(:title, :is_default, :user_id))
 
-        if closet.valid?
-            closet.save
-            render json: closet
-        else
-            render json: {message: "invalid title"}
-        end
+        render json: {id: closet.id, title: closet.title, is_default: closet.is_default, user_id: closet.user_id, total_garments: closet.total_garments}
+        # if closet.valid?
+        #     closet.save
+        # else
+        #     render json: {message: "invalid title"}
+        # end
     end
 
     def show
@@ -27,6 +27,8 @@ class ClosetsController < ApplicationController
     end
 
     def destroy
+        @closet.garments.temperature_ranges.destroy_all
+        @closet.garments.destroy_all
         @closet.destroy
         render json: {message: "closet deleted"}
     end
@@ -38,6 +40,6 @@ class ClosetsController < ApplicationController
     end
 
     def closet_params
-        params.require(:closet).permit(:title, :remove_main_image, :main_image)
+        params.require(:closet).permit(:title, :is_default, :user_id)
     end
 end

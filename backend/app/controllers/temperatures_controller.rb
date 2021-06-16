@@ -6,7 +6,7 @@ class TemperaturesController < ApplicationController
     end
 
     def show
-        temperature = Temperature.find(params.require(:temperature).permit(:low_temperature, :high_temperature))
+        temperature = Temperature.find(params[:id])
         render json: temperature
     end
 

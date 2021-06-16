@@ -3,9 +3,10 @@ class Closet < ApplicationRecord
 
     has_one_attached :main_image
     
+    belongs_to :user
     has_many :garments
 
-    validates :title, presence: true
+    # validates :title, presence: true
 
     def total_garments
         self.garments.count

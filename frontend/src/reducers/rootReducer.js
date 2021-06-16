@@ -1,12 +1,17 @@
-let initialState = {count: 0, garments: [], currentUser: {}, errorMessage: ""};
+import {combineReducers} from 'redux';
+import garmentReducer from './garmentReducer';
+import closetReducer from './closetReducer';
+import temperatureReducer from './temperatureReducer';
+import laundryReducer from './laundryReducer'
 
-function rootReducer(state = initialState, action){
+let initialState = {
+    currentUser: {}, 
+    errorMessage: ""
+};
+
+function userReducer(state = initialState, action){
 
     switch(action.type){
-        case "inc":
-            return{
-                ...state, count: state.count + action.payload
-            }
         case "setCurrentUser":
             return{
                 ...state, currentUser: action.payload
@@ -15,14 +20,10 @@ function rootReducer(state = initialState, action){
             return{
                 ...state, errorMessage: action.payload
             }
-        case "setGarments":
-            return{
-                ...state, garments: action.payload
-            }
         default:
             return state;
     }
-    // return state
 }
 
+const rootReducer = combineReducers({userReducer, garmentReducer, closetReducer, temperatureReducer, laundryReducer})
 export default rootReducer;

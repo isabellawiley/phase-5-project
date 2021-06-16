@@ -6,8 +6,7 @@ class CreateGarments < ActiveRecord::Migration[6.1]
       t.string :garment_type
       t.boolean :is_favorite, default: false
       t.boolean :is_clean, default: true
-      t.integer :user_id
-      t.integer :closet_id
+      t.references :closet
 
       t.timestamps
     end

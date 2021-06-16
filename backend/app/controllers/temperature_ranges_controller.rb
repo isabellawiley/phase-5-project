@@ -19,6 +19,7 @@ class TemperatureRangesController < ApplicationController
     def destroy
         temperature_range = TemperatureRange.find(params[:id])
         temperature_range.destroy
+        render json: {message: "temperature range deleted"}
     end
 
 end

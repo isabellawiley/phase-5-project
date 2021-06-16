@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 function SignUp(){
     const history = useHistory();
     const dispatch = useDispatch();
-    const errorMessage = useSelector((state) => state.errorMessage)
+    const errorMessage = useSelector((state) => state.userReducer.errorMessage)
 
     function handleSubmit(e){
         e.preventDefault();
@@ -23,18 +23,22 @@ function SignUp(){
         })
         .then(res => res.json())
         .then((data) => {
-            if(data.message){
-                dispatch({type: "setErrorMessage", payload: data.message})
-            }
-            else{
-                dispatch({type: "setCurrentUser", payload: data});
-                localStorage.setItem("loggedUser", JSON.stringify(data));
-                history.push("/");
-            }
+            console.log(data)
+            dispatch({type: "setCurrentUser", payload: data});
+            localStorage.setItem("loggedUser", JSON.stringify(data));
+            history.push("/");
+
+            // if(data.message){
+            //     dispatch({type: "setErrorMessage", payload: data.message})
+            // }
+            // else{
+            //     dispatch({type: "setCurrentUser", payload: data});
+            //     localStorage.setItem("loggedUser", JSON.stringify(data));
+            //     history.push("/");
+            // }
         })
     }
 
-    console.log(errorMessage)
     return(
         <div>
             <h1>Sign Up</h1>

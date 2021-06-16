@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user1 = User.create(name: "Isa", birthdate: 19990212, email: "wileyisabella@gmail.com", password: "pass")
-closet1 = Closet.create(title: "Closet 1")
+closet1 = Closet.create(title: "Closet 1", user: user1)
 
 temperatures = [
     {
@@ -49,7 +49,6 @@ garments = [
         garment_type: "top",
         is_favorite: false,
         is_clean: true,
-        user: user1,
         closet: closet1
     },
     {
@@ -58,7 +57,6 @@ garments = [
         garment_type: "top",
         is_favorite: false,
         is_clean: true,
-        user: user1,
         closet: closet1
     },
     {
@@ -67,7 +65,6 @@ garments = [
         garment_type: "top",
         is_favorite: false,
         is_clean: true,
-        user: user1,
         closet: closet1
     },
     {
@@ -76,7 +73,6 @@ garments = [
         garment_type: "bottoms",
         is_favorite: false,
         is_clean: true,
-        user: user1,
         closet: closet1
     },
     {
@@ -85,7 +81,6 @@ garments = [
         garment_type: "bottoms",
         is_favorite: false,
         is_clean: true,
-        user: user1,
         closet: closet1
     }
 ]

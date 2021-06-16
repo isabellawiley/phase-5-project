@@ -3,8 +3,7 @@ import NavBar from "./NavBar";
 
 
 function Header(){
-    const currentUser = useSelector((state) => state.currentUser);
-    console.log(currentUser)
+    const currentUser = useSelector((state) => state.userReducer.currentUser);
 
     return(
         <div>
