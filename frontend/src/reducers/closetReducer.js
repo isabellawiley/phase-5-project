@@ -1,7 +1,8 @@
 let initialState = {
     closets: [],
     closet: {},
-    selectedCloset: {}
+    selectedCloset: {},
+    defaultCloset: {}
 }
 
 function closetReducer(state = initialState, action){
@@ -26,6 +27,22 @@ function closetReducer(state = initialState, action){
         case "deleteCloset":
             return{
                 ...state, closets: action.payload
+            }
+        case "editCloset":
+            return{
+                ...state, closet: action.payload
+            }
+        case "defaultCloset":
+            return{
+                ...state, defaultCloset: action.payload
+            }
+        case "resetClosetReducer":
+            return{
+                ...state,
+                closets: [],
+                closet: {},
+                selectedCloset: {},
+                defaultCloset: {}
             }
         default:
             return state

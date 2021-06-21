@@ -4,18 +4,39 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated"
 
 function NewGarmentForm(){
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const animatedComponents = makeAnimated();
     const closets = useSelector((state) => state.closetReducer.closets)
     const temperatures = useSelector((state) => state.temperatureReducer.temperatures)
-    const dispatch = useDispatch();
-    const selectedCloset = useSelector((state) => state.closetReducer.selectedCloset)
     const selectedGarmentTemps = useSelector((state) => state.garmentReducer.selectedTemps)
-    const history = useHistory();
+    const garmentTypes = useSelector((state) => state.garmentReducer.garmentTypes)
+    const garmentStyles = useSelector((state) => state.garmentReducer.garmentStyles)
     let tempOptions = [];
-    let closetOptions = [];
-    const animatedComponents = makeAnimated();
+
+    let garmentTypeOptions = garmentTypes.map((type) => {
+        return(
+            <option value={type.name}>{type.name}</option>
+        )
+    })
+
+    let garmentStyleOptions = garmentStyles.map((style) => {
+        return(
+            <option value={style}>{style}</option>
+        )
+    })
+
+    let closetOptions = closets.map((closet) => {
+        console.log(closet)
+        return(
+            <option value={closet.id}>{closet.title}</option>
+        )
+    })
+
+    console.log(closets)
+    console.log(closetOptions)
 
     temperatures.map((temp) => tempOptions.push({label: `${temp.low_temperature} - ${temp.high_temperature}`, value: temp}))
-    closets.map((closet) => closetOptions.push({label: closet.title, value: closet}))
 
     function handleSubmit(e){
         e.preventDefault();
@@ -31,7 +52,7 @@ function NewGarmentForm(){
                 garment_type: e.target[1].value,
                 garment_style: e.target[2].value,
                 is_favorite: e.target[3].value,
-                closet_id: selectedCloset.id
+                closet_id: e.target[4].value
             })
         })
         .then(res => res.json())
@@ -63,30 +84,28 @@ function NewGarmentForm(){
                 <label>Garment Name</label>
                 <input id="name" type="text"></input><br/>
                 <label>Garment Type</label>
-                <input id="garment_type" type="text" ></input><br/>
+                <select>
+                    {garmentTypeOptions}
+                </select>
                 <label>Garment Style</label>
-                <input id="garment_style" type="text"></input><br/>
+                <select>
+                    {garmentStyleOptions}
+                </select>
                 <label>Add to Favorites?</label>
                 <select id="is_favorite" >
                     <option value="false">No</option>
                     <option value="true">Yes</option>
                 </select><br/>
                 <label>Choose closet: </label>
-                <Select
-                    options={closetOptions}
-                    components={animatedComponents} 
-                    onChange={(e) => dispatch({type: "setSelectedCloset", payload: e.value})}
-                    // onChange={(e) => setValue("closet", e.value)}
-                /><br/>
+                <select>
+                    {closetOptions}    
+                </select><br/>
                 <label>Temperature you can where this garment in (choose all that apply): </label>
                 <Select
                     options={tempOptions}
                     components={animatedComponents}
                     isMulti
-                    // onChange={(e) => setSelected(e)}
-                    // value={selected}
                     onChange={(e) => dispatch({type: "setSelectedTemps", payload: e})}
-                    // value={selected}
                  /><br/>
                 <input type="submit"/>
             </form>

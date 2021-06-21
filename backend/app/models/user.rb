@@ -17,11 +17,27 @@ class User < ApplicationRecord
         garments
     end
 
+    def laundry
+        self.garments.select {|garment| garment.is_clean == false}
+    end
+
+    def laundry_weight
+        self.laundry.sum{|garment| garment.garment_weight}
+    end
+
     def total_garments
         self.closets.sum {|closet| closet.total_garments}
     end
 
     def total_closets
         self.closets.count
+    end
+
+    def default_closet
+        self.closets.select {|closet| closet.id == self.default_closet_id}
+    end
+
+    def other_closets
+        self.closets.select {|closet| closet.id != self.default_closet_id}
     end
 end

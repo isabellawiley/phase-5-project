@@ -6,7 +6,9 @@ import laundryReducer from './laundryReducer'
 
 let initialState = {
     currentUser: {}, 
-    errorMessage: ""
+    errorMessage: "",
+    isLoggedIn: false,
+    currentTemp: 0
 };
 
 function userReducer(state = initialState, action){
@@ -14,11 +16,24 @@ function userReducer(state = initialState, action){
     switch(action.type){
         case "setCurrentUser":
             return{
-                ...state, currentUser: action.payload
+                ...state, 
+                currentUser: action.payload,
+                isLoggedIn: true
             }
         case "setErrorMessage":
             return{
                 ...state, errorMessage: action.payload
+            }
+        case "resetUserReducer":
+            return{
+                ...state,
+                currentUser: {}, 
+                errorMessage: "",
+                isLoggedIn: false
+            }
+        case "currentTemp":
+            return{
+                ...state, currentTemp: action.payload
             }
         default:
             return state;

@@ -10,11 +10,12 @@ function DeleteCloset({closet}){
             method: "DELETE"
         })
         .then(res => res.json())
-        .then(() => {
-            
+        .then((data) => {
+            console.log(data)
             const updatedClosets = closets.filter(clos => {
                 return clos !== closet;
             })
+            console.log(updatedClosets)
             dispatch({type: "deleteCloset", payload: updatedClosets});
         })
     }

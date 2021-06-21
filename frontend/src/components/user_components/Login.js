@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
-function Login(){
+function Login({currentWeather}){
     const history = useHistory();
     const dispatch = useDispatch();
     const errorMessage = useSelector((state) => state.userReducer.errorMessage)
@@ -21,15 +21,19 @@ function Login(){
             })
         })
         .then(res => res.json())
-        .then((data) => {
-            if(data.message){
-                dispatch({type: "setErrorMessage", payload: data.message})
+        .then((user) => {
+            if(user.message){
+                dispatch({type: "setErrorMessage", payload: user.message})
             }
             else{
-                dispatch({type: "setCurrentUser", payload: data});
-                dispatch({type: "setUserGarments", payload: data.garments});
-                dispatch({type: "setUserClosets", payload: data.closets});
-                localStorage.setItem("loggedUser", JSON.stringify(data))
+                currentWeather(user.lat, user.lon)
+                dispatch({type: "setCurrentUser", payload: user});
+                dispatch({type: "setUserGarments", payload: user.garments});
+                dispatch({type: "setUserClosets", payload: user.closets});
+                dispatch({type: "defaultCloset", payload: user.default_closet})
+                dispatch({type: "setUserLaundry", payload: user.laundry})
+                dispatch({type: "setLaundryWeight", payload: user.laundry_weight})
+                localStorage.setItem("loggedUser", JSON.stringify(user))
                 history.push("/")
             }
             

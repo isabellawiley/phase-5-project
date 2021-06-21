@@ -1,22 +1,16 @@
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
-function NavBar(){
-    const history = useHistory();
-    const dispatch = useDispatch();
-    
-    function logout(){
-        localStorage.clear();
-        history.push("/login");
-        dispatch({type: "setCurrentUser", payload: {}});
-        dispatch({type: "setUserGarments", payload: []});
-        dispatch({type: "setUserClosets", payload: []});
-    }
+function NavBar({logout}){
+
     return(
         <div>
             <button onClick={logout}>Logout</button>
+            <button><Link to="/profile">Profile</Link></button>
             <button><Link to="/">Home</Link></button>
+            <button><Link to="/garments">All Garments</Link></button>
+            <button><Link to="/closets">All Closets</Link></button>
+            <button><Link to="/laundry">Laundry Basket</Link></button>
+            <button><Link to="/suggested">suggested garms</Link></button>
         </div>
     )
 }

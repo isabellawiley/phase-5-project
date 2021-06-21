@@ -11,7 +11,7 @@ class GarmentsController < ApplicationController
 
         # garment.save
         # garment.temperatures.map {|temp| TemperatureRange.create({garment: garment, temperature: temp})}
-        render json: {id: garment.id, name: garment.name, garment_style: garment.garment_style, garment_type: garment.garment_type, is_favorite: garment.is_favorite, is_clean: garment.is_clean, closet_id: garment.closet_id, temperatures: garment.temperatures, user: garment.user, lowest_temp: garment.lowest_temp, highest_temp: garment.highest_temp}
+        render json: {id: garment.id, name: garment.name, garment_style: garment.garment_style, garment_type: garment.garment_type, is_favorite: garment.is_favorite, is_clean: garment.is_clean, closet_id: garment.closet_id, temperatures: garment.temperatures, user: garment.user, lowest_temp: garment.lowest_temp, highest_temp: garment.highest_temp, garment_weight: garment.garment_weight, temperatures: garment.temperatures}
         # if garment.valid?
         #     garment.save
         #     garment.temperatures.each {|temp| TemperatureRange.create({garment: garment, temperature: temp})}
@@ -22,7 +22,7 @@ class GarmentsController < ApplicationController
     end
 
     def show
-        render json: @garment
+        render json: {id: garment.id, name: garment.name, garment_style: garment.garment_style, garment_type: garment.garment_type, is_favorite: garment.is_favorite, is_clean: garment.is_clean, closet_id: garment.closet_id, temperatures: garment.temperatures, user: garment.user, lowest_temp: garment.lowest_temp, highest_temp: garment.highest_temp, garment_weight: garment.garment_weight, temperatures: garment.temperatures}
     end
 
     def update

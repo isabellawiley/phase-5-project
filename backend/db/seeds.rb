@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user1 = User.create(name: "Isa", birthdate: 19990212, email: "wileyisabella@gmail.com", password: "pass")
+user1 = User.create(name: "Isa", birthdate: 19990212, email: "wileyisabella@gmail.com", password: "pass", default_closet_id: 1)
 closet1 = Closet.create(title: "Closet 1", user: user1)
 
 temperatures = [
@@ -46,7 +46,7 @@ garments = [
     {
         name: "shirt1",
         garment_style: "casual",
-        garment_type: "top",
+        garment_type: "short-sleeve shirt",
         is_favorite: false,
         is_clean: true,
         closet: closet1
@@ -54,7 +54,7 @@ garments = [
     {
         name: "shirt2",
         garment_style: "casual",
-        garment_type: "top",
+        garment_type: "long-sleeve shirt",
         is_favorite: false,
         is_clean: true,
         closet: closet1
@@ -62,7 +62,7 @@ garments = [
     {
         name: "sweater",
         garment_style: "casual",
-        garment_type: "top",
+        garment_type: "sweater/sweatshirt",
         is_favorite: false,
         is_clean: true,
         closet: closet1
@@ -70,17 +70,17 @@ garments = [
     {
         name: "pants",
         garment_style: "casual",
-        garment_type: "bottoms",
+        garment_type: "long pants",
         is_favorite: false,
-        is_clean: true,
+        is_clean: false,
         closet: closet1
     },
     {
         name: "shorts",
         garment_style: "casual",
-        garment_type: "bottoms",
+        garment_type: "shorts",
         is_favorite: false,
-        is_clean: true,
+        is_clean: false,
         closet: closet1
     }
 ]

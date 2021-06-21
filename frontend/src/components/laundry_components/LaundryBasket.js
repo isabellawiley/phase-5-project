@@ -4,6 +4,7 @@ import LaundryCard from "./LaundryCard"
 function LaundryBasket(){
     const laundry = useSelector((state) => state.laundryReducer.laundry);
     const dispatch = useDispatch();
+    const laundryWeight = useSelector((state) => state.laundryReducer.weight);
 
     function cleanLaundry(){
         laundry.forEach((garment) => {
@@ -18,10 +19,7 @@ function LaundryBasket(){
             })
             .then(res => res.json())
             .then(() => {
-                let updatedLaundry = laundry.filter((garm) => {
-                    return garm !== garment
-                })
-                dispatch({type: "cleanLaundry", payload: updatedLaundry})
+                dispatch({type: "resetLaundry"})
             })
         })
     }
@@ -29,6 +27,7 @@ function LaundryBasket(){
     return(
         <div>
             <h1>Laundry Basket</h1>
+            <h2>Weight: {laundryWeight}</h2>
             <button onClick={cleanLaundry}>Clean Laundry</button>
             {laundry.length > 0 ? 
                 laundry.map((garment) => {

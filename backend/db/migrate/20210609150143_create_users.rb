@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.date :birthdate
       t.string :email
       t.string :password_digest
+      t.integer :default_closet_id
 
       t.timestamps
     end

@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2021_06_09_154207) do
 
   create_table "closets", force: :cascade do |t|
     t.string "title"
-    t.boolean "is_default", default: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -83,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_154207) do
     t.date "birthdate"
     t.string "email"
     t.string "password_digest"
+    t.integer "default_closet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

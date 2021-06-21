@@ -1,5 +1,5 @@
 class ClosetSerializer < ActiveModel::Serializer
-  attributes :id, :title, :is_default, :total_garments
+  attributes :id, :title, :total_garments
 
   has_many :garments
   belongs_to :user
