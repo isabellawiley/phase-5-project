@@ -24,7 +24,7 @@ let initialState = {
             weight: 400
         },
         {
-            name: "shorts",
+            name: "shorts/skirt",
             weight: 300
         },
         {
@@ -36,7 +36,9 @@ let initialState = {
             weight: 400
         }
     ],
-    garmentStyles: ["casual", "activewear", "loungewear", "formal"]
+    garmentStyles: ["casual", "activewear", "loungewear", "formal"],
+    suggestedGarments: [],
+    favoriteGarments: []
 }
 
 function garmentReducer(state = initialState, action){
@@ -62,12 +64,22 @@ function garmentReducer(state = initialState, action){
             return{
                 ...state, garments: action.payload
             }
+        case "suggestedGarments":
+            return{
+                ...state, suggestedGarments: action.payload
+            }
+        case "favoriteGarments":
+            return{
+                ...state, favoriteGarments: action.payload
+            }
         case "resetGarmentReducer":
             return{
                 ...state,
                 garments: [],
                 selectedTemps: [], 
-                garmentTemperatures: []
+                garmentTemperatures: [],
+                suggestedGarments: [],
+                favoriteGarments: []
             }
         default:
             return state;

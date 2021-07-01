@@ -5,7 +5,6 @@ function Profile({logout}){
     const currentUser = useSelector((state) => state.userReducer.currentUser);
     const defaultCloset = useSelector((state) => state.closetReducer.defaultCloset)
 
-    console.log(currentUser)
 
     return(
        <div>

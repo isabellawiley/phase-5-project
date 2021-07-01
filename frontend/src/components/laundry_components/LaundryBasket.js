@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux"
 import LaundryCard from "./LaundryCard"
 
@@ -18,7 +19,8 @@ function LaundryBasket(){
                 })
             })
             .then(res => res.json())
-            .then(() => {
+            .then((data) => {
+                console.log(data)
                 dispatch({type: "resetLaundry"})
             })
         })
@@ -27,8 +29,7 @@ function LaundryBasket(){
     return(
         <div>
             <h1>Laundry Basket</h1>
-            <h2>Weight: {laundryWeight}</h2>
-            <button onClick={cleanLaundry}>Clean Laundry</button>
+            <Button variant="outline-dark" onClick={cleanLaundry}>Clean Laundry</Button>
             {laundry.length > 0 ? 
                 laundry.map((garment) => {
                     return <LaundryCard key={garment.id} garment={garment} />

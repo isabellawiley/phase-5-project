@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import ClosetCard from "./ClosetCard";
 
 function AllUserClosets(){
@@ -11,8 +11,10 @@ function AllUserClosets(){
     return(
         <div>
             <h1>All Closets</h1>
-            <button><Link to='/new-closet'>New Closet Form</Link></button>
-            {closetsList}
+            <Button variant="outline-dark" href={'/new-closet'}>New Closet Form</Button >
+            <div>
+                {closetsList}
+            </div>
         </div>
     )
 }

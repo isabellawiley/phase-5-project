@@ -3,6 +3,7 @@ class CreateClosets < ActiveRecord::Migration[6.1]
     create_table :closets do |t|
       t.string :title
       t.references :user
+      t.string :image
 
       t.timestamps
     end

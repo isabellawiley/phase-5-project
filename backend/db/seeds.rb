@@ -49,7 +49,8 @@ garments = [
         garment_type: "short-sleeve shirt",
         is_favorite: false,
         is_clean: true,
-        closet: closet1
+        closet: closet1,
+        user_id: user1.id
     },
     {
         name: "shirt2",
@@ -57,7 +58,8 @@ garments = [
         garment_type: "long-sleeve shirt",
         is_favorite: false,
         is_clean: true,
-        closet: closet1
+        closet: closet1,
+        user_id: user1.id
     },
     {
         name: "sweater",
@@ -65,7 +67,8 @@ garments = [
         garment_type: "sweater/sweatshirt",
         is_favorite: false,
         is_clean: true,
-        closet: closet1
+        closet: closet1,
+        user_id: user1.id
     },
     {
         name: "pants",
@@ -73,7 +76,8 @@ garments = [
         garment_type: "long pants",
         is_favorite: false,
         is_clean: false,
-        closet: closet1
+        closet: closet1,
+        user_id: user1.id
     },
     {
         name: "shorts",
@@ -81,7 +85,8 @@ garments = [
         garment_type: "shorts",
         is_favorite: false,
         is_clean: false,
-        closet: closet1
+        closet: closet1,
+        user_id: user1.id
     }
 ]
 
@@ -95,3 +100,42 @@ garments.each do |garm|
         })
     end
 end
+
+# weathers = [
+#     {
+#         name: "clear sky",
+#         icon: "../../app/assets/sun.svg"
+#     },
+#     {
+#         name: "	few clouds",
+#         icon:
+#     },
+#     {
+#         name: "	scattered clouds",
+#         icon:
+#     },
+#     {
+#         name: "	broken clouds",
+#         icon:
+#     },
+#     {
+#         name: "	shower rain",
+#         icon:
+#     },
+#     {
+#         name: "	rain",
+#         icon:
+#     },
+#     {
+#         name: "thunderstorm",
+#         icon:
+#     },
+#     {
+#         name: "snow",
+#         icon:
+#     },
+#     {
+#         name: "mist",
+#         icon:
+#     }
+# ]

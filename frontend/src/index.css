@@ -11,3 +11,84 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.carousel-inner img {
+  width: 100%; /* Set width to 100% */
+  min-height: 200px;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+  .carousel-caption {
+    display: none; 
+  }
+}
+
+
+.flex-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.single-chart {
+  width: 75%;
+  justify-content: space-around ;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+}
+
+.circle {
+  stroke: #4CC790;
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.percentage {
+  fill: #666;
+  font-family: sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+  width:50%;
+}
+
+img {
+  position: relative;
+  width: 50%;
+  height: 50%;
+}
+
+image {
+  position: relative;
+  width: 50%;
+  height: 50%;
+}
+
+.coolCard {
+  text-align: center;
+  border: grey solid 1px;
+  padding: 1rem;
+  width: 18rem;
+  height: 28rem;
+  display: inline-grid;
+  margin: 1rem 1.5rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

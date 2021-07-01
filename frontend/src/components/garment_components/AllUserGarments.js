@@ -1,18 +1,20 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import GarmentCard from "./GarmentCard";
 
-function AllUserGarments(){
+function AllUserGarments({addToLaundry}){
     const garments = useSelector((state) => state.garmentReducer.garments)
 
     let garmentList = garments.map((garment) => {
-        return <GarmentCard key={garment.id} garment={garment} />
+        return <GarmentCard key={garment.id} garment={garment} addToLaundry={addToLaundry} />
     })
 
     return(
         <div>
-            <button><Link to='/new-garment'>New Garment Form</Link></button>
-            {garmentList}
+            <Button variant="outline-dark" href={'/new-garment'}>New Garment Form</Button >
+            <div>
+                {garmentList}
+            </div>
         </div>
     )
 }

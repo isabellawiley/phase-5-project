@@ -1,5 +1,7 @@
 let initialState = { 
-    temperatures: []
+    temperatures: [],
+    icon: "",
+    description: ""
 }
 
 function temperatureReducer(state = initialState, action){
@@ -8,6 +10,14 @@ function temperatureReducer(state = initialState, action){
         case "setTemperatures":
             return{
                 ...state, temperatures: action.payload
+            }
+        case "icon":
+            return{
+                ...state, icon: action.payload
+            }
+        case "description":
+            return{
+                ...state, description: action.payload
             }
         default:
             return state;

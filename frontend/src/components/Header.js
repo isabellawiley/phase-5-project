@@ -7,6 +7,9 @@ function Header({logout}){
 
     return(
         <div>
+            <header>
+                <h1>MngMe</h1>
+            </header>
             {isLoggedIn ? <NavBar logout={logout} /> : <div></div>}
         </div>
     )

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
         if user.valid?
             user.save
-            render json: {id: user.id, name: user.name, birthdate: user.birthdate, email: user.email, token: encode_token({user_id: user.id}), total_garments: user.total_garments, total_closets: user.total_closets, garments: user.garments, closets: user.closets, laundry: user.laundry, laundry_weight: user.laundry_weight, default_closet_id: user.default_closet_id, default_closet: user.default_closet, other_closets: user.other_closets, lat: user_lat, lon: user_lon}
+            render json: {id: user.id, name: user.name, birthdate: user.birthdate, email: user.email, token: encode_token({user_id: user.id}), total_garments: user.total_garments, total_closets: user.total_closets, garments: user.garments, closets: user.closets, laundry: user.laundry, laundry_weight: user.laundry_weight, default_closet_id: user.default_closet_id, default_closet: user.default_closet, other_closets: user.other_closets, lat: user_lat, lon: user_lon, fav_garments: user.fav_garments}
         else
             render json: {message: "invalid input"}
         end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         user = User.find_by(email: params[:email])
 
         if user && user.authenticate(params[:password])
-            render json: {id: user.id, name: user.name, birthdate: user.birthdate, email: user.email, token: encode_token({user_id: user.id}), total_garments: user.total_garments, total_closets: user.total_closets, garments: user.garments, closets: user.closets, laundry: user.laundry, laundry_weight: user.laundry_weight, default_closet_id: user.default_closet_id, default_closet: user.default_closet, other_closets: user.other_closets, lat: user_lat, lon: user_lon}
+            render json: {id: user.id, name: user.name, birthdate: user.birthdate, email: user.email, token: encode_token({user_id: user.id}), total_garments: user.total_garments, total_closets: user.total_closets, garments: user.garments, closets: user.closets, laundry: user.laundry, laundry_weight: user.laundry_weight, default_closet_id: user.default_closet_id, default_closet: user.default_closet, other_closets: user.other_closets, lat: user_lat, lon: user_lon, fav_garments: user.fav_garments}
         else
             render json: {message: "wrong email and/or password"}
         end

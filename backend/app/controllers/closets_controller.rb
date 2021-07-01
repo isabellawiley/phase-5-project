@@ -7,9 +7,10 @@ class ClosetsController < ApplicationController
     end
 
     def create
-        closet = Closet.create(params.permit(:title, :user_id))
+        image = Cloudinary::Uploader.upload(params[:image])
+        closet = Closet.create(closet_params, image: image["url"])
 
-        render json: {id: closet.id, title: closet.title, user_id: closet.user_id, total_garments: closet.total_garments}
+        render json: {id: closet.id, title: closet.title, user_id: closet.user_id, total_garments: closet.total_garments, image: closet.image}
         # if closet.valid?
         #     closet.save
         # else

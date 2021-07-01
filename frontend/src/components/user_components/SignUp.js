@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 
 function SignUp(){
     const history = useHistory();
@@ -43,7 +44,18 @@ function SignUp(){
         <div>
             <h1>Sign Up</h1>
             <h2>Already have an account? <Link to="login">Login!</Link></h2>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" />
+                <Form.Label>Birthdate</Form.Label>
+                <Form.Control type="date" />
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" />
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" />
+                <Button variant="dark" type="submit">Submit</Button>
+            </Form>
+            {/* <form onSubmit={handleSubmit}>
                 <label>Name</label>
                 <input name="name" type="text"></input>
                 <label>Birthdate</label>
@@ -53,7 +65,7 @@ function SignUp(){
                 <label>Password</label>
                 <input name="password" type="password"></input>
                 <input type="submit"/>
-            </form>
+            </form> */}
             <h3>{errorMessage}</h3>
         </div>
     )

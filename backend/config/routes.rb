@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :weathers, only: [:index, :show]
   resources :temperature_ranges, only: [:index, :create, :destroy]
   resources :temperatures, only: [:index, :show]
   resources :closets, only: [:index, :create, :show, :update, :destroy]

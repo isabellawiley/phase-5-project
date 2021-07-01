@@ -1,5 +1,5 @@
 class GarmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :garment_style, :garment_type, :is_favorite, :is_clean, :user, :lowest_temp, :highest_temp, :garment_weight
+  attributes :id, :name, :garment_style, :garment_type, :is_favorite, :is_clean, :user_id, :lowest_temp, :highest_temp, :garment_weight, :image
 
   belongs_to :closet
   has_many :temperatures

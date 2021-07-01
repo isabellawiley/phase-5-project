@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
 
 function DeleteGarment({garment}){
     const garments = useSelector((state) => state.garmentReducer.garments);
@@ -18,7 +19,7 @@ function DeleteGarment({garment}){
     }
     return(
         <div>
-            <button onClick={handleDelete}>Delete Garment</button>
+            <Button variant="outline-dark" onClick={handleDelete}>Delete Garment</Button >
         </div>
     )
 }
