@@ -17,15 +17,12 @@ function ClosetPage(){
             setCloset(closet);
             setIsLoaded(true);
             closet_garments.push(closet.garments.map((garm) => {
-                    return <ClosetGarmentCard key={garm.id} garment={garm} />
+                    return <li> <ClosetGarmentCard key={garm.id} garment={garm} /></li>
                 }))
             })
         },[id])
 
-        if (!isLoaded){
-            return(<h2>Loading...</h2>);
-        }
-        else{
+        if (isLoaded){
             closet_garments.push(closet.garments.map((garm) => {
                 return <ClosetGarmentCard key={garm.id} garment={garm} />
             }))
@@ -34,10 +31,12 @@ function ClosetPage(){
     return(
         <div>
             {isLoaded ? 
-            <div>
-                <DeleteCloset closet={closet} />
+            <div className="center">
                 <h1>{closet.title}</h1>
-                {closet_garments}
+                <DeleteCloset closet={closet} />
+                <ul>
+                    {closet_garments}
+                </ul>
             </div>
             :
             <h2>Loading...</h2> }

@@ -9,7 +9,7 @@ function AllUserClosets(){
         return <ClosetCard key={closet.id} closet={closet} />
     }))
     return(
-        <div>
+        <div className="center">
             <h1>All Closets</h1>
             <Button variant="outline-dark" href={'/new-closet'}>New Closet Form</Button >
             <div>

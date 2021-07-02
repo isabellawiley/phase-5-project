@@ -7,7 +7,7 @@ function Profile({logout}){
 
 
     return(
-       <div>
+       <div className="center">
            <h1>Profile</h1>
            <h2>Name: {currentUser.name}</h2>
            <h2>Birthdate: {currentUser.birthdate}</h2>

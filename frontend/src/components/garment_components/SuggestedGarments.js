@@ -8,7 +8,7 @@ function SuggestedGarments(){
     })
 
     return(
-        <div>
+        <div className="center">
             <h1>Suggest Garments</h1>
             {list}
         </div>

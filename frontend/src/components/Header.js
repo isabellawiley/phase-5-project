@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import NavBar from "./NavBar";
-
+import { Link } from "react-router-dom";
 
 function Header({logout}){
     const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn)
@@ -8,7 +8,7 @@ function Header({logout}){
     return(
         <div>
             <header>
-                <h1>MngMe</h1>
+                <img className="logo" src="/MngMeLogo.png" alt="MngMe Logo" />
             </header>
             {isLoggedIn ? <NavBar logout={logout} /> : <div></div>}
         </div>

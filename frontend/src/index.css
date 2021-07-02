@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 15px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -76,19 +76,30 @@ image {
   height: 50%;
 }
 
-.coolCard {
-  text-align: center;
-  border: grey solid 1px;
-  padding: 1rem;
-  width: 18rem;
-  height: 28rem;
-  display: inline-grid;
-  margin: 1rem 1.5rem;
-  background-color: rgb(255, 255, 255);
+.cardContainer {
+  display: flex;
+  padding-top: 10px;
 }
 
-.cardImage {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.center {
+  margin: auto;
+  width: 80%;
+  padding-top: 10px;
+}
+
+.button {
+  width: 12rem;
+  margin-top: 4px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.name {
+  text-align: left;
+}
+
+.logo {
+  width: 10%;
 }

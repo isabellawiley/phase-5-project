@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { Modal } from "semantic-ui-react";
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 
 function EditGarment({garment}){
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
-    const history = useHistory();
     const animatedComponents = makeAnimated();
+    const allGarments = useSelector((state) => state.garmentReducer.garments);
     const currentUser = useSelector((state) => state.userReducer.currentUser);
     const closets = useSelector((state) => state.closetReducer.closets)
     const temperatures = useSelector((state) => state.temperatureReducer.temperatures)
@@ -18,17 +17,10 @@ function EditGarment({garment}){
     const garmentTypes = useSelector((state) => state.garmentReducer.garmentTypes)
     const garmentStyles = useSelector((state) => state.garmentReducer.garmentStyles)
     let tempOptions = [];
-    
-    // let garmSelectedTemps = [];
-    // const garmTemps = garment.temperatures;
-
-    // garmTemps.map((temp) => garmSelectedTemps.push({label: `${temp.low_temperature} - ${temp.high_temperature}`, value: temp}))
 
     let garmSelectedTemps = garment.temperatures.map((temp) => {
         return({label: `${temp.low_temperature} - ${temp.high_temperature}`, value: temp})
     })
-    
-    // dispatch({type: "setSelectedTemps", payload: garmentTemps})
 
     let garmentTypeOptions = garmentTypes.map((type) => {
         return(
@@ -49,6 +41,11 @@ function EditGarment({garment}){
     })
     
     temperatures.map((temp) => tempOptions.push({label: `${temp.low_temperature} - ${temp.high_temperature}`, value: temp}))
+
+    function handleOpen(){
+        setOpen(true);
+        dispatch({type: "setSelectedTemps", payload: garmSelectedTemps});
+    }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -71,6 +68,11 @@ function EditGarment({garment}){
         })
         .then(res => res.json())
         .then((data) => {
+            let garmentIndex = allGarments.indexOf(garment);
+            allGarments[garmentIndex] = data;
+            console.log(allGarments);
+            dispatch({type: "setUserGarments", payload: allGarments});
+
             let selectedArr = [];
             selectedGarmentTemps.map((sel) => selectedArr.push(sel.value));
             let to_delete = [];
@@ -89,12 +91,6 @@ function EditGarment({garment}){
                 }
             })
 
-            console.log(to_create)
-            console.log(to_delete)
-
-            
-            // dispatch({type: "newGarment", payload: data});
-            // EDIT GARMENT HERE
             to_create.forEach((temp) => {
                 fetch(`http://localhost:3000/temperature_ranges`,{
                     method: "POST",
@@ -119,14 +115,16 @@ function EditGarment({garment}){
                     console.log(x)
                 })
             })
+            dispatch({type: "setSelectedTemps", payload: []});
             setOpen(false);
+            window.location.reload();
         })
     }
 
     return(
         <div>
-            <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)}
-            open={open} trigger={<Button variant="outline-dark">Edit Garment</Button>}>
+            <Modal onClose={() => setOpen(false)} onOpen={handleOpen}
+            open={open} trigger={<Button className="button" variant="outline-dark">Edit Garment</Button>}>
                 <h1>Edit Garment</h1>
                 <Modal.Content>
                     <Modal.Description>
@@ -172,6 +170,7 @@ function EditGarment({garment}){
                                     <Form.Label>Change Garment URL:</Form.Label>
                                     <Form.Control
                                     type="text"
+                                    defaultValue={garment.image}
                                     />
                                 </Form.Group>
                                 <Form.Group as={Col}>
@@ -187,36 +186,6 @@ function EditGarment({garment}){
                             </Form.Row>
                             <Button variant="dark" type="submit">Submit</Button>
                         </Form>
-                        {/* <form onSubmit={handleSubmit}>
-                            <label>Garment Name</label>
-                            <input id="name" type="text" defaultValue={garment.name}></input><br/>
-                            <label>Garment Type</label>
-                            <select defaultValue={garment.garment_type}>
-                                {garmentTypeOptions}
-                            </select><br/>
-                            <label>Garment Style</label>
-                            <select defaultValue={garment.garment_style}>
-                                {garmentStyleOptions}
-                            </select><br/>
-                            <label>Add to Favorites?</label>
-                            <select id="is_favorite" defaultValue={garment.is_favorite}>
-                                <option value="false">No</option>
-                                <option value="true">Yes</option>
-                            </select><br/>
-                            <label>Choose closet: </label>
-                            <select value={garment.closet}>
-                                {closetOptions}
-                            </select><br/>
-                            <label>Temperature you can where this garment in (choose all that apply): </label>
-                            <Select
-                                options={tempOptions}
-                                components={animatedComponents}
-                                isMulti
-                                defaultValue={garmSelectedTemps}
-                                onChange={(e) => dispatch({type: "setSelectedTemps", payload: e})}
-                            /><br/>
-                            <input type="submit"/>
-                        </form> */}
                     </Modal.Description>
                 </Modal.Content>
             </Modal>

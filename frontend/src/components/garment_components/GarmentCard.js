@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {Button} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 import DeleteGarment from "./DeleteGarment";
 import EditGarment from "./EditGarment";
 
@@ -12,14 +12,18 @@ function GarmentCard({garment, addToLaundry}){
     }
 
     return(
-        <div className='coolCard'>
-            <img className="cardImage" alt="garmentimage" src={garment.image}/>
-            <h2>{garment.name}</h2>
-            <div>
-                <Button variant="outline-dark" onClick={handleClick}>{worn ? "Wear" : "Worn"}</Button >
-                <br/><EditGarment garment={garment}/><br/>
-                <DeleteGarment garment={garment} />
-            </div>
+        <div >
+            <Card className="text-center" style={{ width: '18rem', height: '25rem', flex: 1, margin: '5px' }}>
+                <Card.Img variant="top" src={garment.image} alt={garment.name} />
+                <Card.Body>
+                    <Card.Title as="h3">{garment.name}</Card.Title>
+                    <div>
+                        <Button className="button" variant="outline-dark" onClick={handleClick}>{worn ? "Wear" : "Worn"}</Button >
+                        <EditGarment garment={garment}/>
+                        <DeleteGarment garment={garment} />
+                    </div>
+                </Card.Body>
+            </Card>
         </div>
     )
 }

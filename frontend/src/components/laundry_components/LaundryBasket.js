@@ -27,7 +27,7 @@ function LaundryBasket(){
     }
     
     return(
-        <div>
+        <div className="center" >
             <h1>Laundry Basket</h1>
             <Button variant="outline-dark" onClick={cleanLaundry}>Clean Laundry</Button>
             {laundry.length > 0 ? 

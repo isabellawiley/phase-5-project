@@ -23,12 +23,13 @@ function EditCloset({closet}){
         .then(res => res.json())
         .then(() => {
             setOpen(false);
+            window.location.reload();
         })
     }
     return(
         <div>
             <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)}
-            open={open} trigger={<Button variant="outline-dark">Edit Closet</Button>} >
+            open={open} trigger={<Button className="button" variant="outline-dark">Edit Closet</Button>} >
                 <h1>Edit Closet</h1>
                 <Modal.Content>
                     <Modal.Description>

@@ -8,7 +8,7 @@ function NavBar({logout}){
             <Navbar bg="light" expand="lg">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
+                    <Nav as="h3" className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <NavDropdown title="Closets" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/new-closet">New Closet</NavDropdown.Item>

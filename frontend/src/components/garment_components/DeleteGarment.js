@@ -19,7 +19,7 @@ function DeleteGarment({garment}){
     }
     return(
         <div>
-            <Button variant="outline-dark" onClick={handleDelete}>Delete Garment</Button >
+            <Button className="button" variant="outline-dark" onClick={handleDelete}>Delete Garment</Button >
         </div>
     )
 }
