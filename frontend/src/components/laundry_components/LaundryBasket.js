@@ -22,6 +22,7 @@ function LaundryBasket(){
             .then((data) => {
                 console.log(data)
                 dispatch({type: "resetLaundry"})
+                window.location.reload();
             })
         })
     }
