@@ -7,7 +7,6 @@ class GarmentsController < ApplicationController
     end
 
     def create
-        # image = Cloudinary::Uploader.upload(params[:image])
         garment = Garment.create(params.permit(:name, :garment_style, :garment_type, :is_favorite, :closet_id, :user_id, :image))
 
         # garment.save
@@ -23,7 +22,7 @@ class GarmentsController < ApplicationController
     end
 
     def show
-        render json: {id: garment.id, name: garment.name, garment_style: garment.garment_style, garment_type: garment.garment_type, is_favorite: garment.is_favorite, is_clean: garment.is_clean, closet_id: garment.closet_id, temperatures: garment.temperatures, user: garment.user, lowest_temp: garment.lowest_temp, highest_temp: garment.highest_temp, garment_weight: garment.garment_weight, temperatures: garment.temperatures}
+        render json: {id: garment.id, image: garment.image, name: garment.name, garment_style: garment.garment_style, garment_type: garment.garment_type, is_favorite: garment.is_favorite, is_clean: garment.is_clean, closet_id: garment.closet_id, temperatures: garment.temperatures, user: garment.user, lowest_temp: garment.lowest_temp, highest_temp: garment.highest_temp, garment_weight: garment.garment_weight, temperatures: garment.temperatures}
     end
 
     def update

@@ -10,10 +10,10 @@ function Home({addToLaundry}){
     const currentUser = useSelector((state) => state.userReducer.currentUser)
 
     return(
-        <div>
+        <div className="center">
             <h1>Hello, {currentUser.name}!</h1>
             <Container>
-                <Row>
+                <Row className="rows">
                     <Col>
                         <WeatherPanel />
                     </Col>
@@ -21,12 +21,12 @@ function Home({addToLaundry}){
                         <LaundryBasketPanel />
                     </Col>
                 </Row>
-                <Row>
+                <Row className="rows">
                     <Col>
                         <SuggestedGarmentsPanel addToLaundry={addToLaundry} />
                     </Col>                    
                 </Row>
-                <Row>
+                <Row className="rows">
                     <Col>
                         <FavoriteGarmentsPanel addToLaundry={addToLaundry} />
                     </Col>

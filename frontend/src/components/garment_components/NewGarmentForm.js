@@ -38,11 +38,26 @@ function NewGarmentForm(){
 
     temperatures.map((temp) => tempOptions.push({label: `${temp.low_temperature} - ${temp.high_temperature}`, value: temp}))
 
+    const uploadImage = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'mngmeimages');
+        
+        const res = await fetch("https://api.cloudinary.com/v1_1/ddr8azah3/image/upload", {
+            method: "POST",
+            body: data
+        })
+
+        const file = await res.json();
+        console.log(file);
+
+        setImage(file.secure_url);
+        console.log(file.secure_url);
+    }
+
     function handleSubmit(e){
         e.preventDefault();
-        console.log(e.target[5].value)
-        console.log(e.target[5])
-        console.log(image)
 
         fetch(`http://localhost:3000/garments`, {
             method: "POST",
@@ -50,14 +65,13 @@ function NewGarmentForm(){
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                // image: e.target[0].value,
                 name: e.target[0].value,
                 garment_type: e.target[2].value,
                 garment_style: e.target[3].value,
                 is_favorite: e.target[4].value,
                 closet_id: e.target[1].value,
                 user_id: currentUser.id,
-                image: e.target[5].value
+                image: image
             })
         })
         .then(res => res.json())
@@ -122,12 +136,6 @@ function NewGarmentForm(){
                 </Form.Row>
                 <Form.Row>
                     <Form.Group as={Col}>
-                        <Form.Label>Enter Garment URL:</Form.Label>
-                        <Form.Control
-                        type="text"
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col}>
                         <Form.Label>Select Temperatures</Form.Label>
                         <Select
                             options={tempOptions}
@@ -136,10 +144,10 @@ function NewGarmentForm(){
                             onChange={(e) => dispatch({type: "setSelectedTemps", payload: e})}
                         /><br/>
                     </Form.Group>
-                    {/* <Form.Group as={Col}>
+                    <Form.Group as={Col}>
                         <label>Image Upload</label>
-                        <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])}/>
-                    </Form.Group> */}
+                        <input type="file" name="image" onChange={uploadImage}/>
+                    </Form.Group>
                 </Form.Row>
                 <Button variant="dark" type="submit">Submit</Button>
             </Form>

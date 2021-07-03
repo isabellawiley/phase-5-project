@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, Modal } from "semantic-ui-react";
+import { Modal } from "semantic-ui-react";
+import {Button, Form} from 'react-bootstrap'
 
 function DeleteProfile({logout, currentUser}){
     const [open, setOpen] = useState(false);
@@ -22,14 +23,16 @@ function DeleteProfile({logout, currentUser}){
     return(
         <div>
             <Modal onClose={() => setOpen(false) } onOpen={() => setOpen(true)}
-            open={open} trigger={<Button>Delete Profile</Button>} >
+            open={open} trigger={<Button variant="outline-dark">Delete Profile</Button>} >
                 <h2>Delete Profile</h2>
                 <Modal.Content>
                     <Modal.Description>
-                        <form onSubmit={handleDelete} >
-                            <label>Are you sure you want to delete your account?</label>
-                            <input type="submit" value="Yes, I can manage my closet."></input>
-                        </form>
+                        <Form onSubmit={handleDelete}>
+                            <Form.Group>
+                                <Form.Label as="h2">Are you sure you want to delete your account?</Form.Label>{'    '}
+                                <Button variant="outline-dark" type="submit">Yes, I can manage my closet.</Button>
+                            </Form.Group>
+                        </Form>
                     </Modal.Description>
                 </Modal.Content>
             </Modal>

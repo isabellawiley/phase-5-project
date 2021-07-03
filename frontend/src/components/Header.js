@@ -8,7 +8,7 @@ function Header({logout}){
     return(
         <div>
             <header>
-                <img className="logo" src="/MngMeLogo.png" alt="MngMe Logo" />
+                <img className="logo" src="/MngMeLogoClip.PNG" alt="MngMe Logo" />
             </header>
             {isLoggedIn ? <NavBar logout={logout} /> : <div></div>}
         </div>

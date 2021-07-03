@@ -23,7 +23,7 @@ function DeleteCloset({closet}){
 
     return(
         <div>
-            <Button variant="outline-dark" onClick={handleDelete}>Delete Closet</Button >
+            <Button className="button" variant="outline-dark" onClick={handleDelete}>Delete Closet</Button >
         </div>
     )
 }

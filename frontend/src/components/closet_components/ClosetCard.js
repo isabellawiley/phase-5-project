@@ -14,8 +14,9 @@ function ClosetCard({closet}){
     return(
         <div>
             <Card className="text-center" style={{ width: '18rem', height: '25rem', flex: 1, margin: '5px' }} >
+                <Card.Img variant="top" src={closet.image} alt={closet.title} />
                 <Card.Body>
-                    <Card.Title as="h2">{closet.title}</Card.Title>
+                    <Card.Title as="h3">{closet.title}</Card.Title>
                     <div>
                     <Button className="button" variant="outline-dark" onClick={setCloset} href={`/closets/${closet.id}`}>View Closet</Button>
                     <EditCloset closet={closet} />

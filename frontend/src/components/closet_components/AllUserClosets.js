@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
+import { Button, CardDeck } from "react-bootstrap";
 import ClosetCard from "./ClosetCard";
 
 function AllUserClosets(){
@@ -12,8 +12,10 @@ function AllUserClosets(){
         <div className="center">
             <h1>All Closets</h1>
             <Button variant="outline-dark" href={'/new-closet'}>New Closet Form</Button >
-            <div>
-                {closetsList}
+            <div className="cardContainer">
+                <CardDeck>
+                    {closetsList}
+                </CardDeck>
             </div>
         </div>
     )

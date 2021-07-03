@@ -40,7 +40,7 @@ function FavoriteGarmentsPanel({addToLaundry}){
             <h1>Favorite Garments</h1>
             <Carousel partialVisible={true} responsive={responsive} infinite={true} autoPlay={true} >
                 {list}
-                <Card style={{ height: '25rem' }} className="m-auto">
+                <Card style={{ height: '30rem' }} className="m-auto">
                   <Button className="m-auto" href="/garments" variant="outline-dark" size="lg">View All Garments</Button>
                 </Card>
             </Carousel>
