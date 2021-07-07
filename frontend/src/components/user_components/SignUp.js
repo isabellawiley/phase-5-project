@@ -41,19 +41,19 @@ function SignUp(){
     }
 
     return(
-        <div>
+        <div className="loginForm">
             <h1>Sign Up</h1>
             <h2>Already have an account? <Link to="login">Login!</Link></h2>
             <Form onSubmit={handleSubmit}>
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" />
-                <Form.Label>Birthdate</Form.Label>
-                <Form.Control type="date" />
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" />
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" />
-                <Button variant="dark" type="submit">Submit</Button>
+                <Form.Label column="lg">Name</Form.Label>
+                <Form.Control size="lg" type="text" />
+                <Form.Label column="lg">Birthdate</Form.Label>
+                <Form.Control size="lg" type="date" />
+                <Form.Label column="lg">Email</Form.Label>
+                <Form.Control size="lg" type="email" />
+                <Form.Label column="lg">Password</Form.Label>
+                <Form.Control size="lg" type="password" />
+                <Button size="lg" variant="dark" type="submit" style={{marginTop: "10px"}}>Submit</Button>
             </Form>
             {/* <form onSubmit={handleSubmit}>
                 <label>Name</label>

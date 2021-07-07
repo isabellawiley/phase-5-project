@@ -1,8 +1,8 @@
-import { Button } from "react-bootstrap";
+import { Button, CardDeck } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux"
 import LaundryCard from "./LaundryCard"
 
-function LaundryBasket(){
+function LaundryBasket({makeCards}){
     const laundry = useSelector((state) => state.laundryReducer.laundry);
     const dispatch = useDispatch();
     const laundryWeight = useSelector((state) => state.laundryReducer.weight);
@@ -30,11 +30,17 @@ function LaundryBasket(){
     return(
         <div className="center" >
             <h1>Laundry Basket</h1>
-            <Button variant="outline-dark" onClick={cleanLaundry}>Clean Laundry</Button>
+            <Button size="lg" variant="outline-dark" onClick={cleanLaundry}>Clean Laundry</Button>
             {laundry.length > 0 ? 
-                laundry.map((garment) => {
-                    return <LaundryCard key={garment.id} garment={garment} />
-                })
+                <div className="cardContainer">
+                    <CardDeck>
+                    {
+                        laundry.map((garment) => {
+                            return <LaundryCard key={garment.id} garment={garment} />
+                        })
+                    }
+                    </CardDeck>
+                </div>
                 :
                 <h2>All Clean!</h2>
             }

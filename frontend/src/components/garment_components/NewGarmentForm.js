@@ -16,7 +16,8 @@ function NewGarmentForm(){
     const garmentTypes = useSelector((state) => state.garmentReducer.garmentTypes)
     const garmentStyles = useSelector((state) => state.garmentReducer.garmentStyles)
     let tempOptions = [];
-    const [image, setImage] = useState({});
+    const [image, setImage] = useState("");
+    const [valid, setValid] = useState(false);
 
     let garmentTypeOptions = garmentTypes.map((type) => {
         return(
@@ -39,10 +40,12 @@ function NewGarmentForm(){
     temperatures.map((temp) => tempOptions.push({label: `${temp.low_temperature} - ${temp.high_temperature}`, value: temp}))
 
     const uploadImage = async e => {
+        setValid(true);
         const files = e.target.files;
         const data = new FormData();
         data.append('file', files[0]);
         data.append('upload_preset', 'mngmeimages');
+        console.log(data)
         
         const res = await fetch("https://api.cloudinary.com/v1_1/ddr8azah3/image/upload", {
             method: "POST",
@@ -92,13 +95,15 @@ function NewGarmentForm(){
                     console.log(d)
                 })
             })
-            history.push("/garments")        
+            history.push("/garments")
+            setImage("");
         })
     }
 
     return(
-        <div>
+        <div className='form'>
             <Form onSubmit={handleSubmit}>
+                <h1>New Garment</h1>
                 <Form.Row>
                     <Form.Group as={Col}>
                         <Form.Label>Garment Name</Form.Label>
@@ -145,8 +150,12 @@ function NewGarmentForm(){
                         /><br/>
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <label>Image Upload</label>
-                        <input type="file" name="image" onChange={uploadImage}/>
+                        <Form.Label>Garment Image</Form.Label>
+                        <Form.File id="custom-file" type="file" name="image" custom>
+                            <Form.File.Input isValid={valid} onChange={uploadImage}/>
+                            <Form.File.Label>Image Upload</Form.File.Label>
+                            <Form.Control.Feedback type='valid'><img alt={image} src={image}/></Form.Control.Feedback>
+                        </Form.File>
                     </Form.Group>
                 </Form.Row>
                 <Button variant="dark" type="submit">Submit</Button>

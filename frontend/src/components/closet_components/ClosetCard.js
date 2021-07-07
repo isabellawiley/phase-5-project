@@ -13,8 +13,8 @@ function ClosetCard({closet}){
 
     return(
         <div>
-            <Card className="text-center" style={{ width: '18rem', height: '25rem', flex: 1, margin: '5px' }} >
-                <Card.Img variant="top" src={closet.image} alt={closet.title} />
+            <Card border="dark" className="text-center" style={{ width: '18rem', height: '25rem', flex: 1, margin: '5px' }} >
+                <Card.Img className="garmImg" variant="top" src={closet.image} alt={closet.title} />
                 <Card.Body>
                     <Card.Title as="h3">{closet.title}</Card.Title>
                     <div>

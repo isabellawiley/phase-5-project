@@ -7,8 +7,8 @@ function WeatherPanel(){
     const description = useSelector((state) => state.temperatureReducer.description)
 
     return(
-        <Card style={{ height: '25rem' }}>
-            <Row >
+        <Card border="light" style={{ height: '25rem' }}>
+            <Row style={{ margin: 'auto' }}>
             <Col className="m-auto">
                 <Card.Img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>
             </Col>

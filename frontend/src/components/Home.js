@@ -5,10 +5,10 @@ import SuggestedGarmentsPanel from './panel_components/SuggestedGarmentsPanel';
 import WeatherPanel from './panel_components/WeatherPanel';
 import FavoriteGarmentsPanel from './panel_components/FavoriteGarmentsPanel';
 import LaundryBasketPanel from './panel_components/LaundryBasketPanel';
+import { useState } from 'react';
 
 function Home({addToLaundry}){
-    const currentUser = useSelector((state) => state.userReducer.currentUser)
-
+    const currentUser = useSelector((state) => state.userReducer.currentUser);
     return(
         <div className="center">
             <h1>Hello, {currentUser.name}!</h1>
@@ -18,14 +18,16 @@ function Home({addToLaundry}){
                         <WeatherPanel />
                     </Col>
                     <Col>
-                        <LaundryBasketPanel />
+                        <LaundryBasketPanel/>
                     </Col>
                 </Row>
+                <hr className="horizLine"/>
                 <Row className="rows">
                     <Col>
                         <SuggestedGarmentsPanel addToLaundry={addToLaundry} />
                     </Col>                    
                 </Row>
+                <hr className="horizLine"/>
                 <Row className="rows">
                     <Col>
                         <FavoriteGarmentsPanel addToLaundry={addToLaundry} />

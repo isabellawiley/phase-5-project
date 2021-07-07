@@ -43,15 +43,15 @@ function Login({currentWeather}){
     }
 
     return(
-        <div>
+        <div className="loginForm">
             <h1>Login</h1>
             <h2>Don't have an account? <Link to="/signup">Sign Up!</Link></h2>
             <Form onSubmit={handleLogin}>
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" />
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" />
-                <Button variant="dark" type="submit">Submit</Button>
+                <Form.Label column="lg" lg={2}>Email</Form.Label>
+                <Form.Control size="lg" type="email" />
+                <Form.Label column="lg">Password</Form.Label>
+                <Form.Control size="lg" type="password" />
+                <Button size="lg" variant="dark" type="submit" style={{marginTop: "10px"}}>Submit</Button>
             </Form>
             <h3>{errorMessage}</h3>
         </div>

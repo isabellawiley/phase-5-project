@@ -23,7 +23,7 @@ function DeleteProfile({logout, currentUser}){
     return(
         <div>
             <Modal onClose={() => setOpen(false) } onOpen={() => setOpen(true)}
-            open={open} trigger={<Button variant="outline-dark">Delete Profile</Button>} >
+            open={open} trigger={<Button size="lg" variant="outline-dark">Delete Profile</Button>} >
                 <h2>Delete Profile</h2>
                 <Modal.Content>
                     <Modal.Description>

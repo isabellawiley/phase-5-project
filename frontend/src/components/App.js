@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router';
+import { Button, Modal } from "react-bootstrap";
 import '../App.css';
 import Header from './Header';
 import Home from './Home';
@@ -14,12 +15,14 @@ import ClosetPage from './closet_components/ClosetPage';
 import LaundryBasket from './laundry_components/LaundryBasket';
 import Profile from './user_components/Profile';
 import SuggestedGarments from './garment_components/SuggestedGarments';
+import GarmentCard from "./garment_components/GarmentCard";
 
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.garmentReducer.garmentTypes);
   const laundry_weight = useSelector((state) => state.laundryReducer.weight);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedUser"));
@@ -123,9 +126,13 @@ function addToLaundry(garment){
       dispatch({type: "addLaundry", payload: data});
       dispatch({type: "incLaundryWeight", payload: garmentWeight})
       if(laundry_weight + garmentWeight > 3500){
-          alert("Time to do laundry!")
+          setShow(true);
       }
   })
+}
+
+function makeCards(garment){
+  return <GarmentCard key={garment.id} garment={garment} addToLaundry={addToLaundry} />
 }
 
   return (
@@ -145,7 +152,7 @@ function addToLaundry(garment){
           <Home addToLaundry={addToLaundry} />
         </Route>
         <Route exact path="/garments">
-          <AllUserGarments addToLaundry={addToLaundry}/>
+          <AllUserGarments addToLaundry={addToLaundry} makeCards={makeCards}/>
         </Route>
         <Route exact path="/new-garment">
           <NewGarmentForm />
@@ -157,15 +164,24 @@ function addToLaundry(garment){
           <NewClosetForm />
         </Route>
         <Route exact path="/closets/:id">
-          <ClosetPage />
+          <ClosetPage makeCards={makeCards} />
         </Route>
         <Route exact path="/laundry">
-          <LaundryBasket />
+          <LaundryBasket makeCards={makeCards} />
         </Route>
         <Route exact path="/suggested">
-          <SuggestedGarments addToLaundry={addToLaundry} />
+          <SuggestedGarments makeCards={makeCards}/>
         </Route>
       </Switch>
+      <Modal show={show} onHide={() => setShow(false)}>
+          <Modal.Heading closeButton>Laundry Time!</Modal.Heading>
+          <Modal.Body>
+              Looks like your laundry basket is full! Click below to go to your Laundry Basket and do some laundry.
+          </Modal.Body>
+          <Modal.Footer>
+              <Button variant="light" href="/laundry" onClick={() => setShow(false)}>View Laundry</Button>
+          </Modal.Footer>
+      </Modal>
     </div>
   );
 }

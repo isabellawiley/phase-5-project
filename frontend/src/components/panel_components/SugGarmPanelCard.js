@@ -10,8 +10,6 @@ function SugGarmPanelCard({garment, addToLaundry}){
         setWorn(!worn);
     }
 
-    console.log(garment)
-
     return(
         <div>
             { worn ? 

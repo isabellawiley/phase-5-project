@@ -11,7 +11,7 @@ function AllUserClosets(){
     return(
         <div className="center">
             <h1>All Closets</h1>
-            <Button variant="outline-dark" href={'/new-closet'}>New Closet Form</Button >
+            <Button size="lg" variant="outline-dark" href={'/new-closet'}>New Closet Form</Button >
             <div className="cardContainer">
                 <CardDeck>
                     {closetsList}

@@ -1,16 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
+import { CardDeck } from "react-bootstrap";
 
-function SuggestedGarments(){
+function SuggestedGarments({makeCards}){
     const suggestedGarments = useSelector((state) => state.garmentReducer.suggestedGarments)
 
-    const list = suggestedGarments.map((garm) => {
-        return(<h2>{garm.name}</h2>)
-    })
+    const list = suggestedGarments.map((garm) => makeCards(garm))
 
     return(
         <div className="center">
             <h1>Suggest Garments</h1>
-            {list}
+            <CardDeck>
+                {list}
+            </CardDeck>
         </div>
     )
 }

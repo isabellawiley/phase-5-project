@@ -93,6 +93,11 @@ image {
   margin-top: 4px;
 }
 
+.deleteButton {
+  width: 15rem;
+  margin-top: 4px;
+}
+
 h1 {
   text-align: center;
 }
@@ -102,7 +107,7 @@ h1 {
 }
 
 .logo {
-  width: 10%;
+  width: 12%;
   margin-left: 5px;
 }
 
@@ -134,4 +139,83 @@ h1 {
   bottom: 0;
   background-color: rgba(0,0,0,0.5); /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.horizLine {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background-color: lightgrey;
+}
+
+.vl {
+  border-left: 1px solid lightgrey;
+  height: 100%;
+}
+
+.laundryHover {
+  color: grey;
+  opacity: 0.3;
+}
+
+/* hover effect for laundry panel */
+
+.laundrycontainer {
+  position: relative;
+  width: 70%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.laundrycontainer:hover .image {
+  opacity: 0.3;
+  background-color: grey;
+}
+
+.laundrycontainer:hover .middle {
+  opacity: 1;
+}
+
+.form {
+  margin: auto;
+  width: 70%;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.garmImg {
+  object-fit: cover;
+  width: 250px;
+  height: 174px;
+}
+
+.loginForm {
+  margin: auto;
+  width: 30%;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.uploadedImg {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  left: 50%;
 }

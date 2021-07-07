@@ -17,6 +17,8 @@ function EditGarment({garment}){
     const garmentTypes = useSelector((state) => state.garmentReducer.garmentTypes)
     const garmentStyles = useSelector((state) => state.garmentReducer.garmentStyles)
     let tempOptions = [];
+    const [image, setImage] = useState(garment.image);
+    const [valid, setValid] = useState(false);
 
     let garmSelectedTemps = garment.temperatures.map((temp) => {
         return({label: `${temp.low_temperature} - ${temp.high_temperature}`, value: temp})
@@ -46,6 +48,27 @@ function EditGarment({garment}){
         setOpen(true);
         dispatch({type: "setSelectedTemps", payload: garmSelectedTemps});
     }
+
+    const uploadImage = async e => {
+        setValid(true);
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'mngmeimages');
+        console.log(data)
+        
+        const res = await fetch("https://api.cloudinary.com/v1_1/ddr8azah3/image/upload", {
+            method: "POST",
+            body: data
+        })
+
+        const file = await res.json();
+        console.log(file);
+
+        setImage(file.secure_url);
+        console.log(file.secure_url);
+    }
+
 
     function handleSubmit(e){
         e.preventDefault();
@@ -123,12 +146,11 @@ function EditGarment({garment}){
 
     return(
         <div>
-            <Modal onClose={() => setOpen(false)} onOpen={handleOpen}
+            <Modal style={{justifyContent: 'center', marginLeft: '25%', height: '60%', marginTop: '10%', width: '50%'}} onClose={() => setOpen(false)} onOpen={handleOpen}
             open={open} trigger={<Button className="button" variant="outline-dark">Edit Garment</Button>}>
-                <h1>Edit Garment</h1>
+                <Modal.Header><h1>Edit Garment</h1></Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
-                        <h1>{garment.name}</h1>
                         <Form onSubmit={handleSubmit}>
                             <Form.Row>
                                 <Form.Group as={Col}>
@@ -167,13 +189,6 @@ function EditGarment({garment}){
                             </Form.Row>
                             <Form.Row>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Change Garment URL:</Form.Label>
-                                    <Form.Control
-                                    type="text"
-                                    defaultValue={garment.image}
-                                    />
-                                </Form.Group>
-                                <Form.Group as={Col}>
                                     <Form.Label>Select Temperatures</Form.Label>
                                     <Select
                                         options={tempOptions}
@@ -182,6 +197,14 @@ function EditGarment({garment}){
                                         defaultValue={garmSelectedTemps}
                                         onChange={(e) => dispatch({type: "setSelectedTemps", payload: e})}
                                     /><br/>
+                                </Form.Group>
+                                <Form.Group as={Col}>
+                                    <Form.Label>Garment Image</Form.Label>
+                                    <Form.File id="custom-file" type="file" name="image" custom>
+                                        <Form.File.Input isValid={valid} onChange={uploadImage}/>
+                                        <Form.File.Label>Image Upload</Form.File.Label>
+                                        <Form.Control.Feedback type='valid'><img alt={image} src={image}/></Form.Control.Feedback>
+                                    </Form.File>
                                 </Form.Group>
                             </Form.Row>
                             <Button variant="dark" type="submit">Submit</Button>

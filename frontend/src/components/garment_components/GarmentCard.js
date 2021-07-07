@@ -13,8 +13,8 @@ function GarmentCard({garment, addToLaundry}){
 
     return(
         <div >
-            <Card className="text-center" style={{ width: '18rem', height: '25rem', flex: 1, margin: '5px' }}>
-                <Card.Img variant="top" src={garment.image} alt={garment.name} />
+            <Card border="dark" className="text-center" style={{ width: '18rem', height: '25rem', flex: 1, margin: '5px' }}>
+                <Card.Img class="garmImg" variant="top" src={garment.image} alt={garment.name} />
                 <Card.Body>
                     <Card.Title as="h3">{garment.name}</Card.Title>
                     <div>
