@@ -44,4 +44,22 @@ class User < ApplicationRecord
     def total_closets
         self.closets.count
     end
+
+    def client_ip
+        open('http://whatismyip.akamai.com').read
+    end
+
+    def lat
+        address = client_ip
+        location = Geocoder.search(client_ip)
+        results = location.first.coordinates
+        results[0]
+    end
+
+    def lon
+        address = client_ip
+        location = Geocoder.search(client_ip)
+        results = location.first.coordinates
+        results[1]
+    end
 end

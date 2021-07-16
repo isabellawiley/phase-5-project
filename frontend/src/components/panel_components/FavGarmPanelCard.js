@@ -14,7 +14,7 @@ function FavGarmPanelCard({garment, addToLaundry}){
         <div>
             { worn ? 
             <Card style={{ height: '30rem' }}>
-                <Card.Img className="d-block h-75 w-100" src={image} alt={name}/>
+                <Card.Img className="d-block h-75 w-100" style={{objectFit: 'cover'}} src={image} alt={name}/>
                 <Card.Text as="h2" class="text-center">{name}</Card.Text>
                 <Button variant="outline-dark" onClick={handleClick}>{worn ? "Wear" : "Worn"}</Button >
             </Card>

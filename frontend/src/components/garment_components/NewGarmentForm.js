@@ -61,6 +61,7 @@ function NewGarmentForm(){
 
     function handleSubmit(e){
         e.preventDefault();
+        console.log(image)
 
         fetch(`http://localhost:3000/garments`, {
             method: "POST",

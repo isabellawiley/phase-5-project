@@ -8,7 +8,7 @@ function SuggestedGarments({makeCards}){
 
     return(
         <div className="center">
-            <h1>Suggest Garments</h1>
+            <h1>Suggested Garments</h1>
             <CardDeck>
                 {list}
             </CardDeck>

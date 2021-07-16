@@ -15,7 +15,7 @@ class Garment < ApplicationRecord
 
     def lowest_temp
         if self.temperatures.length > 0
-            return (self.temperatures.min {|temp| temp.low_temperature}).low_temperature
+            return (self.temperatures.min {|t1, t2| t1.low_temperature <=> t2.low_temperature}).low_temperature
         else
             return nil
         end
@@ -23,7 +23,7 @@ class Garment < ApplicationRecord
     
     def highest_temp
         if self.temperatures.length > 0
-            return (self.temperatures.max {|temp| temp.high_temperature}).high_temperature
+            return (self.temperatures.max {|t1, t2| t1.high_temperature <=> t2.high_temperature}).high_temperature
         else
             return nil
         end

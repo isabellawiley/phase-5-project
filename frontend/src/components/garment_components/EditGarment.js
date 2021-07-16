@@ -72,6 +72,7 @@ function EditGarment({garment}){
 
     function handleSubmit(e){
         e.preventDefault();
+        console.log(image)
 
         fetch(`http://localhost:3000/garments/${garment.id}`, {
             method: "PATCH",
@@ -86,7 +87,7 @@ function EditGarment({garment}){
                 is_favorite: e.target[4].value,
                 closet_id: e.target[1].value,
                 user_id: currentUser.id,
-                image: e.target[5].value
+                image: image
             })
         })
         .then(res => res.json())
@@ -146,7 +147,7 @@ function EditGarment({garment}){
 
     return(
         <div>
-            <Modal style={{justifyContent: 'center', marginLeft: '25%', height: '60%', marginTop: '10%', width: '50%'}} onClose={() => setOpen(false)} onOpen={handleOpen}
+            <Modal style={{justifyContent: 'center', marginLeft: '25%', height: '81%', marginTop: '10%', width: '50%'}} onClose={() => setOpen(false)} onOpen={handleOpen}
             open={open} trigger={<Button className="button" variant="outline-dark">Edit Garment</Button>}>
                 <Modal.Header><h1>Edit Garment</h1></Modal.Header>
                 <Modal.Content>

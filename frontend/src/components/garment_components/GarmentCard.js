@@ -4,7 +4,7 @@ import DeleteGarment from "./DeleteGarment";
 import EditGarment from "./EditGarment";
 
 function GarmentCard({garment, addToLaundry}){
-    const [worn, setWorn] = useState(garment.is_clean);
+    const [worn, setWorn] = useState(!garment.is_clean);
     
     function handleClick(){
         addToLaundry(garment);
@@ -18,7 +18,11 @@ function GarmentCard({garment, addToLaundry}){
                 <Card.Body>
                     <Card.Title as="h3">{garment.name}</Card.Title>
                     <div>
-                        <Button className="button" variant="outline-dark" onClick={handleClick}>{worn ? "Wear" : "Worn"}</Button >
+                        { worn ? 
+                        <Button className="button" variant="dark" disabled>Worn</Button >
+                        :
+                        <Button className="button" variant="outline-dark" onClick={handleClick}>Wear</Button >
+                    }
                         <EditGarment garment={garment}/>
                         <DeleteGarment garment={garment} />
                     </div>

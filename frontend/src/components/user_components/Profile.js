@@ -13,19 +13,19 @@ function Profile({logout}){
                 <Card.Header as='h1'>Profile</Card.Header>
                 <ListGroup variant="flush">
                     <ListGroupItem>
-                        <Row style={{ width: '65%', marginLeft: '180px' }}>
+                        <Row style={{ width: '65%', marginLeft: '170px' }}>
                             <Col as='h3' class="pull-right" style={{ width: '50%', margin: 'auto' }}>Name: </Col>
                             <Col style={{ width: '50%', margin: 'auto' }}>{currentUser.name}</Col>
                         </Row>
                     </ListGroupItem>
                     <ListGroupItem>
-                        <Row style={{ width: '65%', marginLeft: '180px' }}>
+                        <Row style={{ width: '65%', marginLeft: '170px' }}>
                             <Col as='h3' class="pull-right" style={{ width: '50%', margin: 'auto' }}>Birthdate: </Col>
                             <Col style={{ width: '50%', margin: 'auto' }}>{currentUser.birthdate}</Col>
                         </Row>
                     </ListGroupItem>
                     <ListGroupItem>
-                        <Row style={{ width: '65%', marginLeft: '180px' }}>
+                        <Row style={{ width: '65%', marginLeft: '170px' }}>
                             <Col as='h3' class="pull-right" style={{ width: '50%', margin: 'auto' }}>Email: </Col>
                             <Col style={{ width: '50%', margin: 'auto' }}>{currentUser.email}</Col>
                         </Row>
@@ -37,13 +37,13 @@ function Profile({logout}){
                         </Row>
                     </ListGroupItem> */}
                     <ListGroupItem>
-                        <Row style={{ width: '65%', marginLeft: '180px' }}>
+                        <Row style={{ width: '65%', marginLeft: '170px' }}>
                             <Col as='h3' class="pull-right" style={{ width: '50%', margin: 'auto' }}>Total Closets: </Col>
                             <Col style={{ width: '50%', margin: 'auto' }}>{currentUser.total_closets}</Col>
                         </Row>
                     </ListGroupItem>
                     <ListGroupItem>
-                        <Row style={{ width: '65%', marginLeft: '180px' }}>
+                        <Row style={{ width: '65%', marginLeft: '170px' }}>
                             <Col as='h3' class="pull-right" style={{ width: '50%', margin: 'auto' }}>Total Garments: </Col>
                             <Col style={{ width: '50%', margin: 'auto' }}>{currentUser.total_garments}</Col>
                         </Row>

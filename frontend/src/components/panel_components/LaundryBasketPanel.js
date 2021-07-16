@@ -5,7 +5,7 @@ import basket from '../../icons/basket.png';
 function LaundryBasketPanel(){
     const laundryWeight = useSelector((state) => state.laundryReducer.weight);
 
-    let laundryPercent = laundryWeight/9500;
+    let laundryPercent = laundryWeight/3500;
     let strokeDashArrValue = `${laundryPercent*100}, 100`;
     
     return(

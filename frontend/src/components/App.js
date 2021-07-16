@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router';
-import { Button, Modal } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
+import { Modal } from "semantic-ui-react";
 import '../App.css';
 import Header from './Header';
 import Home from './Home';
@@ -23,6 +24,8 @@ function App() {
   const allTypes = useSelector((state) => state.garmentReducer.garmentTypes);
   const laundry_weight = useSelector((state) => state.laundryReducer.weight);
   const [show, setShow] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const garments = useSelector((state) => state.garmentReducer.garments);
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedUser"));
@@ -99,7 +102,6 @@ function currentWeather(lat, lon, garments){
       const description = words.map((word) => { 
         return word[0].toUpperCase() + word.substring(1); 
       }).join(" ");
-      
       dispatch({type: "currentTemp", payload: data.current.temp})
       dispatch({type: "icon", payload: data.current.weather[0].icon})
       dispatch({type: "description", payload: description})
@@ -123,10 +125,17 @@ function addToLaundry(garment){
   })
   .then(res => res.json())
   .then((data) => {
+      console.log(data)
+      let updatedGarments = garments.filter((garm) => garm !== data);
+      updatedGarments.push(data);
+      // dispatch({type: "setUserGarments", payload: updatedGarments});
       dispatch({type: "addLaundry", payload: data});
       dispatch({type: "incLaundryWeight", payload: garmentWeight})
       if(laundry_weight + garmentWeight > 3500){
-          setShow(true);
+        setShow(true);
+      }
+      else{
+        setShow(false);
       }
   })
 }
@@ -138,6 +147,12 @@ function makeCards(garment){
   return (
     <div>
       <Header logout={logout}/>
+      <Alert show={show} variant="success" dismissible style={{width: '40%', margin: 'auto'}}>
+        <Alert.Heading>Laundry Time!</Alert.Heading>
+        <p>Looks like your laundry basket is full! Click below to go to your Laundry Basket.</p>
+        <hr/>
+        <Button variant="light" href="/laundry" onClick={() => setShow(false)}>View Laundry</Button>
+      </Alert>
       <Switch>
         <Route exact path="/login">
           <Login currentWeather={currentWeather}/>
@@ -173,7 +188,7 @@ function makeCards(garment){
           <SuggestedGarments makeCards={makeCards}/>
         </Route>
       </Switch>
-      <Modal show={show} onHide={() => setShow(false)}>
+      {/* <Modal show={show} onHide={() => setShow(false)}>
           <Modal.Heading closeButton>Laundry Time!</Modal.Heading>
           <Modal.Body>
               Looks like your laundry basket is full! Click below to go to your Laundry Basket and do some laundry.
@@ -181,7 +196,19 @@ function makeCards(garment){
           <Modal.Footer>
               <Button variant="light" href="/laundry" onClick={() => setShow(false)}>View Laundry</Button>
           </Modal.Footer>
-      </Modal>
+      </Modal> */}
+      {/* <Modal style={{justifyContent: 'center', marginLeft: '25%', height: '60%', marginTop: '10%', width: '50%'}} onClose={() => setOpen(false)} onOpen={() => setOpen(true)}
+            open={open} trigger={<Button className="button" variant="outline-dark">Alert</Button>} >
+          <Modal.Header>Laundry Time!</Modal.Header>
+          <Modal.Content>
+              <Modal.Description>
+                  <p>Looks like your laundry basket is full! Click below to go to your Laundry Basket and do some laundry.</p>
+              </Modal.Description>
+          </Modal.Content>
+          <Modal.Footer>
+              <Button variant="light" href="/laundry" onClick={() => setOpen(false)}>View Laundry</Button>
+          </Modal.Footer>
+      </Modal> */}
     </div>
   );
 }
